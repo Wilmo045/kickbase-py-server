@@ -5,6 +5,11 @@ from flask import (
 )
 from werkzeug.security import check_password_hash, generate_password_hash
 
+from kickbase_api.kickbase import Kickbase
+
+from dependency_injector.wiring import Provide, inject
+from .containers import Container
+
 from flaskr.db import get_db
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
@@ -49,8 +54,10 @@ def register():
 
     return render_template('auth/register.html')
 
+
 @bp.route('/login', methods=('GET', 'POST'))
-def login():
+@inject
+def login(kickbase: Kickbase = Provide[Container.kickbase_service]):
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -68,6 +75,11 @@ def login():
         if error is None:
             session.clear()
             session['user_id'] = user['id']
+            
+            user,leagues = kickbase.login(username, password)
+            session['kb_league_id'] = leagues[0].id
+            if user is None:
+                error = 'Incorrect credentials.'
             return redirect(url_for('index'))
 
         flash(error)
