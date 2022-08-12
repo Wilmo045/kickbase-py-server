@@ -2,7 +2,7 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
 
-from flaskr.auth import login_required
+from kickbasepyserver.auth import login_required
 
 from kickbase_api.kickbase import Kickbase
 

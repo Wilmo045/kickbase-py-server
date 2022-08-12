@@ -10,7 +10,7 @@ from kickbase_api.kickbase import Kickbase
 from dependency_injector.wiring import Provide, inject
 from .containers import Container
 
-from flaskr.db import get_db
+from kickbasepyserver.db import get_db
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
