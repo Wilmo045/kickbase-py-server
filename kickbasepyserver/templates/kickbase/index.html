@@ -1,25 +1,51 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Posts{% endblock %}</h1>
-  {% if g.user %}
-    <a class="action" href="{{ url_for('blog.create') }}">New</a>
-  {% endif %}
+<h1>{% block title %}Spieler{% endblock %}</h1>
+{% if g.user %}
+<a class="action" href="{{ url_for('blog.create') }}">New</a>
+{% endif %}
 {% endblock %}
 
 {% block content %}
-  {% for player in players %}
-    <article class="post">
-      <header>
-        <div>
-          <h1>{{ player['lastName'] }}</h1>
-          <div class="about">by {{ player['teamName'] }}</div>
-        </div>
-      </header>
-      <p class="body">{{ player['totalPoints'] }}</p>
-    </article>
-    {% if not loop.last %}
-      <hr>
-    {% endif %}
-  {% endfor %}
+{% cache 60*5 %}
+{% for player in players|sort(attribute="position") %}
+<article class="post">
+  <div>
+    <img src={{ player['profileBig'] }} alt="PlayerPicture" class="playerimg" width="220">
+  </div>
+  <header>
+    <div>
+      <h4>{{ player['number'] }} {% if player['position'] == 1 %} TW
+        {% elif player['position']==2 %} ABW
+        {% elif player['position']==3 %} MF
+        {% elif player['position']==4 %} ANG
+        {% else %} NN
+        {% endif %}
+        {% if player['dayStatus']==1 %} AUFGESTELLT
+        {% else %}
+        {% endif %}
+      </h4>
+      <h1>{{ player['lastName'] }}</h1>
+      <div class="about">{{ player['teamName'] }}</div>
+    </div>
+  </header>
+  <div class="body">
+    <ul>
+      <li>{{ player['totalPoints'] }} Pkt.</li>
+      <li>{{ player['averagePoints'] }} Ø Pkt.</li>
+    </ul>
+  </div>
+  <div class="marketvalue">
+    <ul>
+    <li>{{ player['marketValue']|decimalpoint }}</li>
+    <li>Marktwert</li>
+  </ul>
+  </div>
+</article>
+{% if not loop.last %}
+<hr>
+{% endif %}
+{% endfor %}
+{% endcache %}
 {% endblock %}

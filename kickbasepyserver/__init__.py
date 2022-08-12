@@ -1,8 +1,14 @@
 import os
 from .containers import Container
+from flask_caching import Cache
 
 from flask import Flask
 
+import locale
+locale.setlocale(locale.LC_ALL, 'de_DE.utf8')
+def decimalpoint(value):
+    """Applies thousands separator to integer."""
+    return '{:n}'.format(int(value))
 
 
 def create_app(test_config=None):
@@ -10,8 +16,12 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
+        CACHE_TYPE='SimpleCache',  # Flask-Caching related configs
+        CACHE_DEFAULT_TIMEOUT= 300, # Flask-Caching related configs
         DATABASE=os.path.join(app.instance_path, 'kickbasepyserver.sqlite'),
     )
+
+    app.jinja_env.filters['decimalpoint'] = decimalpoint
 
     # create Dependency Injection Container
     container = Container()
@@ -47,10 +57,6 @@ def create_app(test_config=None):
     from . import kickbase
     app.register_blueprint(kickbase.bp)
 
-
-    # a simple page that says hello
-    @app.route('/hello')
-    def hello():
-        return 'Hello, World!'
-
+    # register cache
+    cache = Cache(app)
     return app
