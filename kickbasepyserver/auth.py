@@ -7,7 +7,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 from dependency_injector.wiring import Provide, inject
 
-from .lib.KickbaseCustom import KickbaseCustom
+from .classes.KickbaseCustom import KickbaseCustom
 from .containers import Container
 
 from kickbasepyserver.db import get_db

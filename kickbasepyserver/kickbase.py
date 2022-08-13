@@ -6,7 +6,7 @@ from kickbasepyserver.auth import login_required
 
 from dependency_injector.wiring import Provide, inject
 
-from .lib.KickbaseCustom import KickbaseCustom
+from .classes.KickbaseCustom import KickbaseCustom
 from .containers import Container
 
 bp = Blueprint('kickbase', __name__, url_prefix='/kickbase')
