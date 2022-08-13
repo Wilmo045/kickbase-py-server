@@ -5,9 +5,9 @@ from flask import (
 )
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from kickbase_api.kickbase import Kickbase
-
 from dependency_injector.wiring import Provide, inject
+
+from .lib.KickbaseCustom import KickbaseCustom
 from .containers import Container
 
 from kickbasepyserver.db import get_db
@@ -57,7 +57,7 @@ def register():
 
 @bp.route('/login', methods=('GET', 'POST'))
 @inject
-def login(kickbase: Kickbase = Provide[Container.kickbase_service]):
+def login(kickbase: KickbaseCustom = Provide[Container.kickbase_service]):
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
