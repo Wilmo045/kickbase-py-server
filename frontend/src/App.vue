@@ -1,14 +1,18 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import Navigation from './components/Navigation.vue';
+import Home from './components/Home.vue';
 </script>
 
 <template>
-  <header>
-    <div>
-      <nav>
-        <Navigation />
-      </nav>
-    </div>
+  <section class="section">
+  <header >
+    <Navigation/>
   </header>
+  </section>
+  <section class="section">
+  <main>
+    <Home/>
+  </main>
+  </section>
 </template>
