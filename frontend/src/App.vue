@@ -12,7 +12,8 @@ import Home from './components/Home.vue';
   </section>
   <section class="section">
   <main>
-    <Home/>
+    <router-view>
+    </router-view>
   </main>
   </section>
 </template>

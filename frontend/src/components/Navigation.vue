@@ -37,9 +37,11 @@ defineProps({
 
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
-        <a class="navbar-item"> BASE </a>
-
+        <a class="navbar-item"> <router-link to="/"> BASE </router-link> </a>
+          
         <a class="navbar-item"> TRANSFERS </a>
+
+        <a class="navbar-item"> <router-link to="/team"> TEAM </router-link> </a>
 
         <a class="navbar-item"> LIVE </a>
 
@@ -61,10 +63,7 @@ defineProps({
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <a class="button is-primary">
-              <strong>Sign up</strong>
-            </a>
-            <a class="button is-light"> Log in </a>
+              <a class="button is-light"> Log in </a>
           </div>
         </div>
       </div>
