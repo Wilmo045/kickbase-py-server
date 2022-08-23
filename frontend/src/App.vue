@@ -6,14 +6,16 @@ import Home from './components/Home.vue';
 
 <template>
   <section class="section">
-  <header >
-    <Navigation/>
-  </header>
+    <header>
+      <Navigation />
+    </header>
   </section>
   <section class="section">
-  <main>
-    <router-view>
-    </router-view>
-  </main>
+    <div class="container">
+      <main>
+        <router-view>
+        </router-view>
+      </main>
+    </div>
   </section>
 </template>

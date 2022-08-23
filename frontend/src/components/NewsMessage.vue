@@ -1,17 +1,28 @@
 <script>
-
+export default {
+    props: {
+        'playername': String,
+        'playerpicture': String
+    }
+}
 </script>
 <template>
-    <article class="message is-dark">
-        <div class="message-header">
-            <p>Dark</p>
+    <div class="box">
+        <div class="tile is-ancestor">
+            <div class="tile is-2 is-parent">
+                <figure class="image is-48x48 is-child is-centered">
+                    <img :src="playerpicture" alt="PlayerPicture" class="image" width="100">
+                </figure>
+            </div>
+            <div class="tile is-6 is-vertical">
+                <p class="title is-4">{{ playername }}</p>
+                <p class="subtitle is-8"> Kickbase > Player </p>
+
+            </div>
+            <div class="tile is-vertical">
+                <p>vor x h</p>
+                <p><img src="/src/assets/img/speech_bubble.png" alt="Speech Bubble" class="image" width="20"> 0 </p>
+            </div>
         </div>
-        <div class="message-body">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis
-            placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et
-            dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales,
-            arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna,
-            vehicula et sem eget, facilisis sodales sem.
-        </div>
-    </article>
+    </div>
 </template>

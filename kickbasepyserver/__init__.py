@@ -1,8 +1,8 @@
 import os
 from .containers import Container
-from flask_caching import Cache
 
 from flask import Flask
+from flask_cors import CORS
 
 import locale
 locale.setlocale(locale.LC_ALL, 'de_DE.utf8')
@@ -45,18 +45,20 @@ def create_app(test_config=None):
     db.init_app(app)
 
     # register blueprint auth
-    from . import auth
+    from .user import auth
     app.register_blueprint(auth.bp)
 
-    # register blueprint blog
-    from . import blog
-    app.register_blueprint(blog.bp)
-    app.add_url_rule('/', endpoint='index')
+    # register blueprint league
+    from .league import league
+    app.register_blueprint(league.bp)
 
-    # register blueprint kickbase
-    from . import kickbase
-    app.register_blueprint(kickbase.bp)
+     # register blueprint league
+    from .gift import gift
+    app.register_blueprint(gift.bp)
 
-    # register cache
-    cache = Cache(app)
+     # CORS
+    cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+
     return app
+
+   
