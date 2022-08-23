@@ -1,18 +1,14 @@
-import functools
-
 from flask import (
-    Blueprint, g, redirect, jsonify, request, session, url_for
+    Blueprint, request, session
 )
 
 from dependency_injector.wiring import Provide, inject
-
+from flask_cors import cross_origin
 from kickbasepyserver.classes.kickbase_api.KickbaseCustom import KickbaseCustom
-from  kickbasepyserver.classes.kickbase_api.models.user import User
 from kickbasepyserver.containers import Container
 
-from kickbasepyserver.db import get_db
-
 bp = Blueprint('auth', __name__, url_prefix='/api/auth')
+
 
 @bp.route('/login', methods=['POST'])
 @inject

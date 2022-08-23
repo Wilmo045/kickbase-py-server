@@ -1,9 +1,16 @@
 <script >
+import { login } from '../api';
+
 export default {
   data() {
     return { showBurger: false }
-  }
-};
+  },
+ methods: {
+    loginUser(username, password){
+        return login(username, password)
+      }
+    }
+  };
 </script>
 
 <template>
@@ -52,7 +59,7 @@ export default {
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="buttons">
-              <a class="button is-light"> Log in </a>
+              <a class="button is-light"  v-on:click="loginUser"> Log in </a>
             </div>
           </div>
         </div>
