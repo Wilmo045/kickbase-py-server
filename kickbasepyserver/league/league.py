@@ -14,7 +14,7 @@ bp = Blueprint('league', __name__, url_prefix='/api/league')
 @inject
 def userplayers(leagueId, kickbase: KickbaseCustom = Provide[Container.kickbase_service]):
     if (kickbase.token is None):
-        return 402
+        return 'Not logged in'
 
     players = kickbase.league_user_players(str(leagueId), kickbase.user.id)
 

@@ -3,7 +3,10 @@ import axios from 'axios'
 const API_URL = 'http://localhost:5000/api'
 
 export function login(username, password) {
-  return axios.post(`${API_URL}/auth/login`, username, password)
+  var bodyFormData = new FormData();
+  bodyFormData.append('username', username);
+  bodyFormData.append('password', password);
+  return axios.post(`${API_URL}/auth/login`, bodyFormData)
 }
 
 export function fetchTeam(leagueId) {

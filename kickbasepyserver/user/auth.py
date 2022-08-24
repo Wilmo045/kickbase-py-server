@@ -1,5 +1,5 @@
 from flask import (
-    Blueprint, request, session
+    Blueprint, request, session, make_response, jsonify
 )
 
 from dependency_injector.wiring import Provide, inject
@@ -14,16 +14,14 @@ bp = Blueprint('auth', __name__, url_prefix='/api/auth')
 @inject
 def login(kickbase: KickbaseCustom = Provide[Container.kickbase_service]):
     if request.method == 'POST':
-        data = request.get_json()
+        username = request.form.get('username')
+        password = request.form.get('password')
         session.clear()
-        
-        j = kickbase.login(data['username'], data['password'])
-       # session['user_id'] = user['id']
-       # session['kb_league_id'] = leagues[0].id 
-        if j is None:
-            return 'Incorrect credentials.'
-        return j
-    return 405
+        r = kickbase.login(username, password)
+        if r.status_code == 200:
+            #change response to hide token etc.
+            return r.json()
+        return make_response(jsonify(success='Login failed'))
 
 @bp.route('/logout')
 def logout():

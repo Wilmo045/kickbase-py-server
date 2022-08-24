@@ -48,12 +48,8 @@ class KickbaseCustom(Kickbase):
 
             self.user = User(j["user"])
             league_data = [LeagueData(d) for d in j["leagues"]]
-            return j
-
-        elif r.status_code == 401:
-            raise KickbaseException()
-        else:
-            raise KickbaseException()
+            
+        return r
 
     def league_user_players(self, league: Union[str, LeagueData], user: Union[str, User], match_day: int = 0) -> Tuple[
         Player]:

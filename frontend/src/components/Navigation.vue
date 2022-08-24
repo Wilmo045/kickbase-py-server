@@ -1,16 +1,17 @@
 <script >
-import { login } from '../api';
+import { mapState } from 'pinia'
+import { useUserStore } from '@/store/UserStore';
 
 export default {
   data() {
-    return { showBurger: false }
-  },
- methods: {
-    loginUser(username, password){
-        return login(username, password)
-      }
+    return {
+      showBurger: false,
     }
-  };
+  },
+  computed: {
+    ...mapState(useUserStore, {loggedIn: 'loggedIn'})
+  }
+};
 </script>
 
 <template>
@@ -59,7 +60,9 @@ export default {
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="buttons">
-              <a class="button is-light"  v-on:click="loginUser"> Log in </a>
+              <a class="button" :class="{ 'is-light': !loggedIn, 'is-success': loggedIn }">
+                <router-link to="/login"> {{ loggedIn ? 'Logged In' : 'Log In' }} </router-link>
+              </a>
             </div>
           </div>
         </div>
