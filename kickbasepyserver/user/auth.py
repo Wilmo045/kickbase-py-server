@@ -1,5 +1,5 @@
 from flask import (
-    Blueprint, request, session, make_response, jsonify
+    Blueprint, request, session, make_response, jsonify, json
 )
 
 from dependency_injector.wiring import Provide, inject
@@ -20,7 +20,10 @@ def login(kickbase: KickbaseCustom = Provide[Container.kickbase_service]):
         r = kickbase.login(username, password)
         if r.status_code == 200:
             #change response to hide token etc.
-            return r.json()
+            content = json.loads(r.text)
+            response_dict = content["user"]
+            response_dict["leagues"] = content["leagues"]
+            return json.dumps(response_dict)
         return make_response(jsonify(success='Login failed'))
 
 @bp.route('/logout')

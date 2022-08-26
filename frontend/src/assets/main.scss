@@ -25,6 +25,8 @@ $control-border-width: 2px;
 $input-border-color: transparent;
 $input-shadow: none;
 
+
+
 // Import only what you need from Bulma
 @import "../node_modules/bulma/sass/utilities/_all.sass";
 @import "../node_modules/bulma/sass/base/_all.sass";
@@ -41,3 +43,16 @@ $input-shadow: none;
 @import "../node_modules/bulma/sass/components/card.sass";
 @import "../node_modules/bulma/sass/grid/tiles.sass";
 @import "../node_modules/bulma/sass/components/level.sass";
+@import "../node_modules/bulma/sass/helpers/_all.sass";
+
+@import "../node_modules/bulma/sass/utilities/mixins.sass";
+// black font on mobile
+.black_mobile {
+    @include touch {
+        color: $black-ter;
+    }
+  
+    @include desktop {
+      color: $white-ter;
+    }
+  }

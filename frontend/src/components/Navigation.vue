@@ -9,7 +9,8 @@ export default {
     }
   },
   computed: {
-    ...mapState(useUserStore, {loggedIn: 'loggedIn'})
+    ...mapState(useUserStore, {loggedIn: 'loggedIn'}),
+    ...mapState(useUserStore, { loggedInUser: 'username' })
   }
 };
 </script>
@@ -63,6 +64,7 @@ export default {
               <a class="button" :class="{ 'is-light': !loggedIn, 'is-success': loggedIn }">
                 <router-link to="/login"> {{ loggedIn ? 'Logged In' : 'Log In' }} </router-link>
               </a>
+              <p class="is-size-7 black_mobile" v-show="loggedIn">{{loggedInUser}}</p>
             </div>
           </div>
         </div>
