@@ -17,5 +17,7 @@ def userplayers(leagueId, kickbase: KickbaseCustom = Provide[Container.kickbase_
         return 'Not logged in'
 
     players = kickbase.league_user_players(str(leagueId), kickbase.user.id)
-
+    players['lineup'] = kickbase.line_up(str(leagueId)).players
+    players['lineuptype'] = kickbase.line_up(str(leagueId)).type
+   
     return players

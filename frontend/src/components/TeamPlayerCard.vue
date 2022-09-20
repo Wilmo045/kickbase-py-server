@@ -4,12 +4,23 @@ export default {
         'playerFirstName': String,
         'playerLastName': String,
         'playerPicture': String,
-        'playerNumber': String,
-        'playerPosition': String,
+        'playerNumber': Number,
+        'playerPosition': Number,
         'playerDayStatus': Number,
         'playerMarketValue': Number,
         'playerTotalPoints': Number,
         'playerAveragePoints': Number
+    },
+    computed: {
+        playerPositionName() {
+            switch (this.playerPosition) {
+               case 1: return 'TW';
+               case 2: return 'ABW';
+               case 3: return 'MF';
+               case 4: return 'ANG';
+               default: return 'NULL'
+            }
+        }
     }
 }
 </script>
@@ -27,7 +38,7 @@ export default {
                         <p>{{ playerNumber }}</p>
                     </div>
                     <div class="level-item subtitle is-6">
-                        <p>{{ playerPosition }}</p>
+                        <p>{{ playerPositionName }}</p>
                     </div>
                     <div class="level-item subtitle is-6">
                         <p v-if="playerDayStatus==1">AUFGESTELLT</p>
