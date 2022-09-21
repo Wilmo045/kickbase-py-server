@@ -28,31 +28,50 @@ $input-shadow: none;
 
 
 // Import only what you need from Bulma
-@import "../node_modules/bulma/sass/utilities/_all.sass";
+
 @import "../node_modules/bulma/sass/base/_all.sass";
-@import "../node_modules/bulma/sass/elements/button.sass";
-@import "../node_modules/bulma/sass/form/_all";
+
 @import "../node_modules/bulma/sass/elements/box.sass";
+@import "../node_modules/bulma/sass/elements/button.sass";
 @import "../node_modules/bulma/sass/elements/container.sass";
+@import "../node_modules/bulma/sass/elements/image.sass";
 @import "../node_modules/bulma/sass/elements/title.sass";
-@import "../node_modules/bulma/sass/form/_all.sass";
+
+@import "../node_modules/bulma/sass/components/card.sass";
+@import "../node_modules/bulma/sass/components/level.sass";
+@import "../node_modules/bulma/sass/components/message.sass";
 @import "../node_modules/bulma/sass/components/navbar.sass";
+
+@import "../node_modules/bulma/sass/form/_all.sass";
+
 @import "../node_modules/bulma/sass/layout/hero.sass";
 @import "../node_modules/bulma/sass/layout/section.sass";
-@import "../node_modules/bulma/sass/components/message.sass";
-@import "../node_modules/bulma/sass/components/card.sass";
-@import "../node_modules/bulma/sass/grid/tiles.sass";
-@import "../node_modules/bulma/sass/components/level.sass";
-@import "../node_modules/bulma/sass/helpers/_all.sass";
 
+@import "../node_modules/bulma/sass/grid/tiles.sass";
+
+@import "../node_modules/bulma/sass/helpers/_all.sass";
+@import "../node_modules/bulma/sass/utilities/_all.sass";
 @import "../node_modules/bulma/sass/utilities/mixins.sass";
+
 // black font on mobile
 .black_mobile {
-    @include touch {
-        color: $black-ter;
-    }
-  
-    @include desktop {
-      color: $white-ter;
-    }
+  @include touch {
+    color: $black-ter;
   }
+
+  @include desktop {
+    color: $white-ter;
+  }
+}
+
+.playerroundicon {
+  @include desktop {
+    width: 48px;
+    height: 48px;
+  }
+
+  @include touch {
+    width: 32px;
+    height: 32px;
+  }
+}

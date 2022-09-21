@@ -37,25 +37,33 @@ export default {
 
 </script>
 <template>
-     <TeamPlayerField :players="players" :lineup="lineup"/> 
-    <p>Torwart</p>
-    <TeamPlayerCard v-for="player in goalkeepers" :key="player.id" :playerFirstName="player.firstName"
-        :playerLastName="player.lastName" :playerPicture="player.profileBig" :playerPosition="player.position"
-        :playerNumber="player.number" :playerDayStatus="player.dayStatus" :playerAveragePoints="player.averagePoints"
-        :playerTotalPoints="player.totalPoints" :playerMarketValue="player.marketValue" />
+    <section class="section">
+        <TeamPlayerField :players="players" :lineup="lineup" />
+    </section>
+    <section class="section">
+        <p>Torwart</p>
+        <TeamPlayerCard v-for="player in goalkeepers" :key="player.id" :playerFirstName="player.firstName"
+            :playerLastName="player.lastName" :playerPicture="player.profileBig" :playerPosition="player.position"
+            :playerNumber="player.number" :playerDayStatus="player.dayStatus"
+            :playerAveragePoints="player.averagePoints" :playerTotalPoints="player.totalPoints"
+            :playerMarketValue="player.marketValue" />
         <p>Abwehr</p>
-    <TeamPlayerCard v-for="player in defenders" :key="player.id" :playerFirstName="player.firstName"
-        :playerLastName="player.lastName" :playerPicture="player.profileBig" :playerPosition="player.position"
-        :playerNumber="player.number" :playerDayStatus="player.dayStatus" :playerAveragePoints="player.averagePoints"
-        :playerTotalPoints="player.totalPoints" :playerMarketValue="player.marketValue" />
+        <TeamPlayerCard v-for="player in defenders" :key="player.id" :playerFirstName="player.firstName"
+            :playerLastName="player.lastName" :playerPicture="player.profileBig" :playerPosition="player.position"
+            :playerNumber="player.number" :playerDayStatus="player.dayStatus"
+            :playerAveragePoints="player.averagePoints" :playerTotalPoints="player.totalPoints"
+            :playerMarketValue="player.marketValue" />
         <p>Mittelfeld</p>
-    <TeamPlayerCard v-for="player in midfielders" :key="player.id" :playerFirstName="player.firstName"
-        :playerLastName="player.lastName" :playerPicture="player.profileBig" :playerPosition="player.position"
-        :playerNumber="player.number" :playerDayStatus="player.dayStatus" :playerAveragePoints="player.averagePoints"
-        :playerTotalPoints="player.totalPoints" :playerMarketValue="player.marketValue" />
+        <TeamPlayerCard v-for="player in midfielders" :key="player.id" :playerFirstName="player.firstName"
+            :playerLastName="player.lastName" :playerPicture="player.profileBig" :playerPosition="player.position"
+            :playerNumber="player.number" :playerDayStatus="player.dayStatus"
+            :playerAveragePoints="player.averagePoints" :playerTotalPoints="player.totalPoints"
+            :playerMarketValue="player.marketValue" />
         <p>Angriff</p>
-    <TeamPlayerCard v-for="player in strikers" :key="player.id" :playerFirstName="player.firstName"
-        :playerLastName="player.lastName" :playerPicture="player.profileBig" :playerPosition="player.position"
-        :playerNumber="player.number" :playerDayStatus="player.dayStatus" :playerAveragePoints="player.averagePoints"
-        :playerTotalPoints="player.totalPoints" :playerMarketValue="player.marketValue" />
+        <TeamPlayerCard v-for="player in strikers" :key="player.id" :playerFirstName="player.firstName"
+            :playerLastName="player.lastName" :playerPicture="player.profileBig" :playerPosition="player.position"
+            :playerNumber="player.number" :playerDayStatus="player.dayStatus"
+            :playerAveragePoints="player.averagePoints" :playerTotalPoints="player.totalPoints"
+            :playerMarketValue="player.marketValue" />
+    </section>
 </template>
